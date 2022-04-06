@@ -4,7 +4,7 @@ from classes.customer import *
 
 class TestCustomer(unittest.TestCase):
     def setUp(self):
-        self.customer = Customer("Mark", 20)
+        self.customer = Customer("Mark", 20, 0)
 
     # @unittest.skip("Delete this line to run the test")
     def test_has_name(self):

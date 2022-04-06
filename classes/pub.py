@@ -5,9 +5,20 @@ class Pub:
         self.till = input_till
         self.drinks = input_drinks
 
-    def sell_drink(self, drink_name, customer):
-        customer.wallet -= self.drinks[drink_name] 
-        self.till += self.drinks[drink_name]
+    def sell_drink(self, drink, customer):
+        if customer.age > 18:
+            if customer.drunkenness < 5:
+                customer.wallet -= drink.price
+                self.till += drink.price
+                customer.drunkenness += drink.alcohol_level
+            else:
+                return "You don't have to go home, but you can't stay here!"
+        else:
+            return "Go to the cafe on the other side of the street!"
+
+    
+
+
 
 
     
