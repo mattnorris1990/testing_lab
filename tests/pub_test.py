@@ -1,6 +1,8 @@
 import unittest
 
 from classes.pub import *
+from classes.drink import *
+from classes.customer import *
 
 class TestPub(unittest.TestCase):
     def setUp(self):
@@ -23,3 +25,10 @@ class TestPub(unittest.TestCase):
     # @unittest.skip("Delete this line to run the test")
     def test_has_drinks(self):
         self.assertEqual(self.drink_dict, self.pub.drinks)
+
+    # @unittest.skip("Delete this line to run the test")
+    def test_sell_drink(self):
+        customer = Customer("Jim", 20)
+        self.pub.sell_drink("Guiness", customer)
+        self.assertEqual(16, customer.wallet)
+        self.assertEqual(104, self.pub.till)
