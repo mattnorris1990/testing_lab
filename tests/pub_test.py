@@ -3,6 +3,7 @@ import unittest
 from classes.pub import *
 from classes.drink import *
 from classes.customer import *
+from classes.food import *
 
 class TestPub(unittest.TestCase):
     def setUp(self):
@@ -20,7 +21,9 @@ class TestPub(unittest.TestCase):
         self.drink_2 = Drink("Tennents", 3, 2)
         self.drink_3 = Drink("Red Wine", 5, 5)
         self.drinks_list = [self.drink_1, self.drink_2, self.drink_3]
+        self.food_1 = Food("Chips", 5, 1)
         self.pub = Pub("The CodeClan Cubby", 100, self.drinks_list)
+
 
 
     # @unittest.skip("Delete this line to run the test")
@@ -65,3 +68,13 @@ class TestPub(unittest.TestCase):
         self.assertEqual(105, self.pub.till)
         self.assertEqual(5, self.customer_3.drunkenness)
         self.assertEqual("You don't have to go home, but you can't stay here!", self.pub.sell_drink(self.drink_1, self.customer_3))
+    
+    # @unittest.skip("Delete this line to run the test")
+    def test_sell_food(self):
+        self.pub.sell_food(self.food_1, self.customer_3)
+        self.assertEqual(25, self.customer_3.wallet)
+        self.assertEqual(105, self.pub.till)
+        self.assertEqual(0, self.customer_3.drunkenness)
+        self.pub.sell_drink(self.drink_3, self.customer_3)
+        self.pub.sell_food(self.food_1, self.customer_3)
+        self.assertEqual(4, self.customer_3.drunkenness)

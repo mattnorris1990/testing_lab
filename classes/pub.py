@@ -16,8 +16,11 @@ class Pub:
         else:
             return "Go to the cafe on the other side of the street!"
 
-    
-
+    def sell_food(self, food, customer):
+        customer.wallet -= food.price
+        self.till += food.price
+        if customer.drunkenness > 0:
+            customer.drunkenness -= food.rejuvenation_level
 
 
 
