@@ -7,12 +7,6 @@ from classes.food import *
 
 class TestPub(unittest.TestCase):
     def setUp(self):
-        # self.drink_dict = {
-        #     "Guiness" : 4,
-        #     "Tennents" : 3,
-        #     "Red Wine" : 5,
-        #     "White Wine" : 5
-        # }
         self.customer_1 = Customer("Jim", 20, 30)
         self.customer_2 = Customer("Brian", 10, 16)
         self.customer_3 = Customer("Lola", 30, 32)
@@ -20,9 +14,20 @@ class TestPub(unittest.TestCase):
         self.drink_1 = Drink("Guiness", 4, 1)
         self.drink_2 = Drink("Tennents", 3, 2)
         self.drink_3 = Drink("Red Wine", 5, 5)
-        self.drinks_list = [self.drink_1, self.drink_2, self.drink_3]
+        # self.drinks_list = [self.drink_1, self.drink_2, self.drink_3]
+
+        self.drinks_dict = [
+            { "drink" : self.drink_1,
+            "quantity" : 10 },
+            { "drink" : self.drink_2,
+            "quantity" : 15 },
+            { "drink" : self.drink_3,
+            "quantity" : 20 }
+        ]
+
         self.food_1 = Food("Chips", 5, 1)
-        self.pub = Pub("The CodeClan Cubby", 100, self.drinks_list)
+        # self.pub = Pub("The CodeClan Cubby", 100, self.drinks_list)
+        self.pub = Pub("The CodeClan Cubby", 100, self.drinks_dict)
 
 
 
@@ -36,7 +41,8 @@ class TestPub(unittest.TestCase):
 
     # @unittest.skip("Delete this line to run the test")
     def test_has_drinks(self):
-        self.assertEqual(self.drinks_list, self.pub.drinks)
+        # self.assertEqual(self.drinks_list, self.pub.drinks)
+        self.assertEqual(self.drinks_dict, self.pub.drinks)
 
     # @unittest.skip("Delete this line to run the test")
     def test_sell_drink(self):
@@ -78,3 +84,7 @@ class TestPub(unittest.TestCase):
         self.pub.sell_drink(self.drink_3, self.customer_3)
         self.pub.sell_food(self.food_1, self.customer_3)
         self.assertEqual(4, self.customer_3.drunkenness)
+
+    def test_stock_value(self):
+        self.pub.stock_value()
+        self.assertEqual(185, self.pub.total_value)
